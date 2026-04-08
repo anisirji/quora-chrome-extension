@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quora Growth Bot — Settings</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e0e0e0; padding: 40px; max-width: 560px; margin: 0 auto; }
+  h1 { font-size: 1.4rem; color: #fff; margin-bottom: 8px; }
+  p.subtitle { font-size: 0.85rem; color: #888; margin-bottom: 32px; }
+  .field { margin-bottom: 20px; }
+  label { display: block; font-size: 0.8rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 600; }
+  input { width: 100%; background: #1a1d27; border: 1px solid #2a2d37; color: #e0e0e0; padding: 10px 14px; border-radius: 6px; font-size: 0.9rem; outline: none; font-family: monospace; }
+  input:focus { border-color: #6ea8fe; }
+  .hint { font-size: 0.72rem; color: #555; margin-top: 4px; }
+  .actions { margin-top: 32px; display: flex; gap: 12px; align-items: center; }
+  .btn { border: none; padding: 10px 24px; border-radius: 6px; font-size: 0.85rem; cursor: pointer; font-weight: 600; }
+  .btn-save { background: #1a3a5c; color: #6ea8fe; border: 1px solid #2a5a8c; }
+  .btn-save:hover { background: #1f4a7a; }
+  .status { font-size: 0.85rem; color: #75d99a; opacity: 0; transition: opacity 0.3s; }
+  .status.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<h1>Settings</h1>
+<p class="subtitle">Configure your API keys below. These are stored locally in Chrome and only sent to the respective APIs.</p>
+
+<div class="field">
+  <label>SerpAPI Key</label>
+  <input type="text" id="serpApiKey" placeholder="your-serpapi-key">
+  <div class="hint">Used to search Google for Quora questions. Get one at serpapi.com.</div>
+</div>
+
+<div class="field">
+  <label>OpenAI API Key</label>
+  <input type="text" id="openaiApiKey" placeholder="sk-...">
+  <div class="hint">Used to generate AI answers via GPT-4o.</div>
+</div>
+
+<div class="actions">
+  <button class="btn btn-save" id="saveBtn">Save Settings</button>
+  <span class="status" id="status">Saved!</span>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>
