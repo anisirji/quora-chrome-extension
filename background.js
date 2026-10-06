@@ -87,7 +87,34 @@ async function dbQuery(sql, params = []) {
     const errText = await resp.text();
     throw new Error(`DB error: ${errText}`);
   }
-  return resp.json();
+
+  const raw = await resp.json();
+
+  // Neon HTTP API can return different formats:
+  // 1. { results: [{ fields, rows, ... }] }  (batch/wrapped)
+  // 2. { fields, rows, ... }                 (direct)
+  // 3. rows can be arrays or objects
+  let result = raw;
+  if (raw.results && Array.isArray(raw.results)) {
+    result = raw.results[0] || { rows: [] };
+  }
+
+  const fields = result.fields;
+  let rows = result.rows || [];
+
+  // If rows are arrays (not objects), map using field names
+  if (rows.length > 0 && Array.isArray(rows[0]) && fields) {
+    const fieldNames = fields.map((f) => f.name);
+    rows = rows.map((row) => {
+      const obj = {};
+      fieldNames.forEach((name, i) => {
+        obj[name] = row[i];
+      });
+      return obj;
+    });
+  }
+
+  return { ...result, rows };
 }
 
 // ── SerpAPI Search ──────────────────────────────────────────────────────────

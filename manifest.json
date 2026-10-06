@@ -12,7 +12,8 @@
     "https://www.quora.com/*",
     "https://quora.com/*",
     "https://serpapi.com/*",
-    "https://api.openai.com/*"
+    "https://api.openai.com/*",
+    "https://*.neon.tech/*"
   ],
   "action": {
     "default_popup": "popup.html",

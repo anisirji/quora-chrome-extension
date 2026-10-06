@@ -31,7 +31,7 @@ async function loadEntries() {
     renderEntries();
   } catch (err) {
     document.getElementById("entries").innerHTML =
-      `<div class="empty">Failed to load: ${err.message}<br><br>Check Settings &#9881; to configure your database URL.</div>`;
+      `<div class="empty">Failed to load: ${err.message}<br><br>Could not connect to database. Check your internet connection.</div>`;
   }
 }
 
